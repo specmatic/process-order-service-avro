@@ -13,8 +13,8 @@ echo "Schema Registry is up."
 cd /usr/src/app/schemas
 
 curl -X POST -H "Content-Type: application/vnd.schemaregistry.v1+json" \
-  --data "{\"schema\":$(jq -Rs . < NewOrders.avsc)}" \
-  ${SCHEMA_REGISTRY_URL}/subjects/new-orders-value/versions
+  --data "{\"schema\":$(jq -Rs . < ProcessedOrders.avsc)}" \
+  ${SCHEMA_REGISTRY_URL}/subjects/processed-orders-value/versions
 
 curl -X POST -H "Content-Type: application/vnd.schemaregistry.v1+json" \
   --data "{\"schema\":$(jq -Rs . < WipOrders.avsc)}" \

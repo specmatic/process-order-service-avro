@@ -8,7 +8,7 @@ until kafka-topics --bootstrap-server broker:9093 --list > /dev/null 2>&1; do
 done
 
 echo 'Creating topics...'
-TOPICS="new-orders wip-orders"
+TOPICS="processed-orders wip-orders"
 
 for topic in $TOPICS; do
   kafka-topics --bootstrap-server broker:9093 \

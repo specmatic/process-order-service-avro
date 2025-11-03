@@ -1,6 +1,6 @@
 {
   "type": "record",
-  "name": "OrderToProcess",
+  "name": "ProcessedOrder",
   "namespace": "order",
   "fields": [
     {
@@ -14,6 +14,10 @@
         "name": "OrderStatus",
         "symbols": ["PENDING", "PROCESSING", "PROCESSED", "CANCELLED"]
       }
+    },
+    {
+        "name": "amount",
+        "type": "int"
     }
   ]
 }

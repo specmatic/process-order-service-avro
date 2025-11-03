@@ -1,0 +1,24 @@
+{
+  "name": "PROCESS_IPHONE_ORDER",
+  "receive": {
+    "topic": "wip-orders",
+    "headers": {
+      "orderRequestId": 1234
+    },
+    "payload": {
+      "id": 1,
+      "status": "PROCESSING"
+    }
+  },
+  "send": {
+    "topic": "processed-orders",
+    "headers": {
+      "orderRequestId": 1234
+    },
+    "payload": {
+      "id": 1,
+      "status": "PROCESSED",
+      "amount": 1000
+    }
+  }
+}

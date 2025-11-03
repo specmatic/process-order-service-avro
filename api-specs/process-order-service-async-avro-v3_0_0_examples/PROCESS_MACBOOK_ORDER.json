@@ -1,0 +1,24 @@
+{
+  "name": "PROCESS_MACBOOK_ORDER",
+  "receive": {
+    "topic": "wip-orders",
+    "headers": {
+      "orderRequestId": 4567
+    },
+    "payload": {
+      "id": 2,
+      "status": "PROCESSING"
+    }
+  },
+  "send": {
+    "topic": "processed-orders",
+    "headers": {
+      "orderRequestId": 4567
+    },
+    "payload": {
+      "id": 2,
+      "status": "PROCESSED",
+      "amount": 1000
+    }
+  }
+}
