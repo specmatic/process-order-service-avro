@@ -1,4 +1,5 @@
-sources:
-  - provider: filesystem
-    provides:
+version: 2
+contracts:
+  - provides:
       - api-specs/process-order-service-async-avro-v3_0_0.yaml
+
