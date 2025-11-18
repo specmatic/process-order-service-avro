@@ -1,5 +1,9 @@
 version: 2
 contracts:
-  - provides:
-      - api-specs/process-order-service-async-avro-v3_0_0.yaml
-
+  - git:
+      branch: main
+      url: https://github.com/specmatic/specmatic-order-contracts.git
+    provides:
+      - io/specmatic/examples/store/asyncapi/3_0_0/data_pipeline/order_service/v1/wip-orders-async-avro-v1.yaml
+    consumes:
+      - io/specmatic/examples/store/asyncapi/3_0_0/data_pipeline/order_service/v1/processed-orders-async-avro-v1.yaml
