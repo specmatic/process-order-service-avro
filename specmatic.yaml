@@ -1,9 +1,55 @@
-version: 2
-contracts:
-  - git:
-      branch: main
-      url: https://github.com/specmatic/specmatic-order-contracts.git
-    provides:
-      - io/specmatic/examples/store/asyncapi/3_0_0/data_pipeline/order_service/v1/wip-orders-async-avro-v1.yaml
-    consumes:
-      - io/specmatic/examples/store/asyncapi/3_0_0/data_pipeline/order_service/v1/processed-orders-async-avro-v1.yaml
+version: 3
+systemUnderTest:
+  service:
+    $ref: "#/components/services/processOrderService"
+    runOptions:
+      $ref: "#/components/runOptions/processOrderServiceTest"
+dependencies:
+  services:
+    - service:
+        $ref: "#/components/services/completeOrderService"
+        runOptions:
+          $ref: "#/components/runOptions/completeOrderServiceMock"
+components:
+  sources:
+    specmaticOrderContracts:
+      git:
+        url: https://github.com/specmatic/specmatic-order-contracts.git
+  services:
+    processOrderService:
+      definitions:
+        - definition:
+            source:
+              $ref: "#/components/sources/specmaticOrderContracts"
+            specs:
+              - io/specmatic/examples/store/asyncapi/3_0_0/data_pipeline/order_service/v1/wip-orders-async-avro-v1.yaml
+    completeOrderService:
+      definitions:
+        - definition:
+            source:
+              $ref: "#/components/sources/specmaticOrderContracts"
+            specs:
+              - io/specmatic/examples/store/asyncapi/3_0_0/data_pipeline/order_service/v1/processed-orders-async-avro-v1.yaml
+  runOptions:
+    processOrderServiceTest:
+      asyncapi:
+        type: mock
+        servers:
+          - host: localhost:9092
+            protocol: kafka
+        schemaRegistry:
+          kind: CONFLUENT
+          url: http://localhost:8085
+          username: admin
+          password: admin-secret
+    completeOrderServiceMock:
+      asyncapi:
+        type: test
+        servers:
+          - host: localhost:9092
+            protocol: kafka
+        schemaRegistry:
+          kind: CONFLUENT
+          url: http://localhost:8085
+          username: admin
+          password: admin-secret
