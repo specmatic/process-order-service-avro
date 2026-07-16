@@ -41,7 +41,7 @@ dependencies {
     }
 
     testImplementation platform('org.junit:junit-bom:6.1.2')
-    testImplementation("org.testcontainers:testcontainers:1.19.3")
+    testImplementation("org.testcontainers:testcontainers:2.0.5")
     testImplementation("io.specmatic.enterprise:executable:$specmaticEnterpriseVersion")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
